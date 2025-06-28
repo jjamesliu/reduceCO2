@@ -5,6 +5,6 @@ Check your carbon footprint.
 Build Tool: Vite<br/>
 Library: React<br/>
 Styling: TailwindCSS<br/>
-Deployment: Netlify<<br/>
+Deployment: Netlify<br/>
 
 APIS: AutoClimatiq

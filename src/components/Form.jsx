@@ -15,11 +15,16 @@ export default function Form() {
                     <option>Bus</option>
                 </select>
 
-                <label className='block'>Distance</label>
+                <label className='block mb-2'>Distance</label>
+                <div className='flex items-center border border-gray-400 rounded-lg px-2 py-1.5'>
                 <input type='text'
                 placeholder='0'
                 name='distance'
-                className='border rounded-lg mt-2 w-full p-[6px]'></input>
+                className='outline-none w-full'></input>
+                <span>miles</span>
+                </div>
+
+                <button type='submit' className='font-medium mx-auto w-30 flex justify-center mt-5 b p-2 rounded-lg cursor-pointer bg-white text-black shadow-[0_0_20px_rgba(0,0,0,200)] '>Submit</button>
             </form>
             </div>
 

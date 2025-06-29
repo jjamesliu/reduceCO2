@@ -1,4 +1,15 @@
 export default function Form(props) {
+    const api = import.meta.env.VITE_CLIMATIQ_API;
+
+    const travelModeMap = {
+        'Gas-Powered Car': 'car',
+        'Electric-Powered Car': 'car',
+        'Hybrid Car': 'car',
+        'Train': 'rail',
+        'Air': 'air'
+    }
+    const apiTravelMode = travelModeMap[props.travelMode]
+
     function handleSubmit(e) {
         e.preventDefault();
 
@@ -9,10 +20,11 @@ export default function Form(props) {
             return;
         }
         props.setError(null);
-        console.log('Submitted: ', props.travelMode, props.distance);
+        console.log('apiTravelMode: ', apiTravelMode);
     }
 
     return (
+        <>
         <div className='flex flex-col justify-center rounded-2xl p-6 shadow-[0_0_15px_rgba(0,0,0,0.8)] max-w-lg mx-auto bg-[#1f1f38] mb-30'>
             <div className='w-auto'>
                 <h1 className='text-center text-[1.3rem] font-semibold pb-1'>Eco Travel Planner 🌱</h1>
@@ -29,7 +41,7 @@ export default function Form(props) {
                         <option>Electric-Powered Car</option>
                         <option>Hybrid Car</option>
                         <option>Train</option>
-                        <option>Bus</option>
+                        <option>Air</option>
                     </select>
 
                     <label className='block mb-2'>Distance</label>
@@ -50,7 +62,12 @@ export default function Form(props) {
                     Submit</button>
                 </form>
             </div>
-
         </div>
+        <div className='bg-blue-300'>
+            <h1>How You Can Reduce Your Carbon Footprint</h1>
+            <p>Based on your input: You are traveling by {props.travelMode} and you are 
+                traveling {props.distance} mles.</p>
+        </div>
+        </>
     )
 }

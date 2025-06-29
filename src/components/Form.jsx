@@ -1,13 +1,30 @@
-export default function Form() {
+export default function Form(props) {
+    function handleSubmit(e) {
+        e.preventDefault();
+
+        const isEmpty = props.distance.trim() === '';
+        const isNotNumber = isNaN(props.distance);
+        if (isEmpty || isNotNumber) {
+            props.setError('Please enter a valid number for distance.');
+            return;
+        }
+        props.setError(null);
+        console.log('Submitted: ', props.travelMode, props.distance);
+    }
+
     return (
         <div className='flex flex-col justify-center rounded-2xl p-6 shadow-[0_0_15px_rgba(0,0,0,0.8)] max-w-lg mx-auto bg-[#1f1f38] mb-30'>
             <div className='w-auto'>
                 <h1 className='text-center text-[1.3rem] font-semibold pb-1'>Eco Travel Planner 🌱</h1>
                 <p className='text-center font-light opacity-80'>Calculate the Carbon Emissions for your trip.</p>
 
-                <form className='mt-4'>
+                <form className='mt-4'
+                onSubmit={handleSubmit}>
                     <label>Travel Type</label>
-                    <select className='flex flex-col border border-gray-400 my-2 rounded-lg p-1.5 w-full'>
+                    <select className='flex flex-col border border-gray-400 my-2 rounded-lg p-1.5 w-full'
+                    name='travelType' 
+                    value={props.travelMode}
+                    onChange={ (e) => props.setTravelMode(e.target.value)}>
                         <option>Gas-Powered Car</option>
                         <option>Electric-Powered Car</option>
                         <option>Hybrid Car</option>
@@ -20,11 +37,17 @@ export default function Form() {
                     <input type='text'
                     placeholder='0'
                     name='distance'
-                    className='outline-none w-full'></input>
+                    className='outline-none w-full'
+                    value={props.distance}
+                    onChange={ (e) => props.setDistance(e.target.value)}></input>
                     <span>miles</span>
                     </div>
 
-                    <button type='submit' className='font-medium mx-auto w-30 flex justify-center mt-10 b p-2 rounded-lg cursor-pointer bg-white text-black shadow-[0_0_20px_rgba(0,0,0,200)] '>Submit</button>
+                    <h3 className='mt-10 text-center text-red-500 font-semibold'>{props.error}</h3>
+
+                    <button type='submit'
+                     className='font-medium mx-auto w-30 flex justify-center mt-10 b p-2 rounded-lg cursor-pointer bg-white text-black shadow-[0_0_20px_rgba(0,0,0,200)] '>
+                    Submit</button>
                 </form>
             </div>
 

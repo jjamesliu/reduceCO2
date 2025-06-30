@@ -45,7 +45,7 @@ export default function Form(props) {
                     </select>
 
                     <label className='block mb-2'>Distance</label>
-                    <div className='flex items-center border border-gray-400 rounded-lg px-2 py-1.5'>
+                    <div className='flex items-center border border-gray-400 rounded-lg px-2 py-1.5 mb-7'>
                     <input type='text'
                     placeholder='0'
                     name='distance'
@@ -53,6 +53,28 @@ export default function Form(props) {
                     value={props.distance}
                     onChange={ (e) => props.setDistance(e.target.value)}></input>
                     <span>miles</span>
+                    </div>
+
+                    <div className='flex flex-row text-center'>
+                        <div>
+                            <label>Origin Latitude</label>
+                            <input className='mt-2 outline-none px-2 py-1.5 border border-gray-400 rounded-md'></input>
+                        </div>
+                        <div>
+                            <label>Origin Longitude</label>
+                            <input className='mt-2 outline-none px-2 py-1.5 border border-gray-400 rounded-md'></input>
+                        </div>
+                    </div>
+
+                    <div className='flex flex-row text-center mt-2'>
+                        <div>
+                            <label>Destination Latitude</label>
+                            <input className='mt-2 outline-none px-2 py-1.5 border border-gray-400 rounded-md'></input>
+                        </div>
+                        <div>
+                            <label>Destination Longitude</label>
+                            <input className='mt-2 outline-none px-2 py-1.5 border border-gray-400 rounded-md'></input>
+                        </div>
                     </div>
 
                     <h3 className='mt-10 text-center text-red-500 font-semibold'>{props.error}</h3>
@@ -63,6 +85,8 @@ export default function Form(props) {
                 </form>
             </div>
         </div>
+
+
         <div className='bg-blue-300'>
             <h1>How You Can Reduce Your Carbon Footprint</h1>
             <p>Based on your input: You are traveling by {props.travelMode} and you are 

@@ -1,4 +1,5 @@
 export default function Form(props) {
+
     const api = import.meta.env.VITE_CLIMATIQ_API;
 
     const travelModeMap = {
@@ -12,11 +13,22 @@ export default function Form(props) {
 
     function handleSubmit(e) {
         e.preventDefault();
+        console.log('button clicked')
 
-        const isEmpty = props.distance.trim() === '';
-        const isNotNumber = isNaN(props.distance);
+        const isEmpty = props.distance.trim() === '' ||
+        props.originLat.trim() === '' ||
+        props.originLong.trim() === '' ||
+        props.destinationLat.trim() === '' ||
+        props.destinationLong.trim() === '';
+
+        const isNotNumber = isNaN(props.distance) ||
+        isNaN(props.originLat) ||
+        isNaN(props.originLong) ||
+        isNaN(props.destinationLat) ||
+        isNaN(props.destinationLong);
+
         if (isEmpty || isNotNumber) {
-            props.setError('Please enter a valid number for distance.');
+            props.setError('Input valid numbers.');
             return;
         }
         props.setError(null);
@@ -45,35 +57,48 @@ export default function Form(props) {
                     </select>
 
                     <label className='block mb-2'>Distance</label>
-                    <div className='flex items-center border border-gray-400 rounded-lg px-2 py-1.5 mb-7'>
+                    <div className='flex items-center border border-gray-400 rounded-lg px-2 py-1.5 mb-5'>
                     <input type='text'
-                    placeholder='0'
+                    placeholder='1'
                     name='distance'
                     className='outline-none w-full'
                     value={props.distance}
                     onChange={ (e) => props.setDistance(e.target.value)}></input>
-                    <span>miles</span>
+                    <span>km</span>
                     </div>
 
-                    <div className='flex flex-row text-center'>
+                    <div className='flex flex-row text-center mb-5'>
                         <div>
                             <label>Origin Latitude</label>
-                            <input className='mt-2 outline-none px-2 py-1.5 border border-gray-400 rounded-md'></input>
+                            <input className='mt-2 outline-none px-2 py-1.5 border border-gray-400 rounded-md'
+                            value={props.originLat}
+                            placeholder='ex: 41.40338'
+                            name='originLat'
+                            onChange={(e) => props.setOriginLat(e.target.value)}></input>
                         </div>
                         <div>
                             <label>Origin Longitude</label>
-                            <input className='mt-2 outline-none px-2 py-1.5 border border-gray-400 rounded-md'></input>
+                            <input className='mt-2 outline-none px-2 py-1.5 border border-gray-400 rounded-md'
+                            value={props.originLong}
+                            placeholder='ex: 11.50327'
+                            onChange={(e) => props.setOriginLong(e.target.value)}></input>
                         </div>
                     </div>
 
                     <div className='flex flex-row text-center mt-2'>
                         <div>
                             <label>Destination Latitude</label>
-                            <input className='mt-2 outline-none px-2 py-1.5 border border-gray-400 rounded-md'></input>
+                            <input className='mt-2 outline-none px-2 py-1.5 border border-gray-400 rounded-md'
+                            value={props.destinationLat}
+                            placeholder='ex: 21.41228'
+                            onChange={(e) => props.setDestinationLat(e.target.value)}></input>
                         </div>
                         <div>
                             <label>Destination Longitude</label>
-                            <input className='mt-2 outline-none px-2 py-1.5 border border-gray-400 rounded-md'></input>
+                            <input className='mt-2 outline-none px-2 py-1.5 border border-gray-400 rounded-md'
+                            value={props.destinationLong}
+                            placeholder='ex: 51.52238'
+                            onChange={(e) => props.setDestinationLong(e.target.value)}></input>
                         </div>
                     </div>
 

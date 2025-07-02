@@ -62,6 +62,7 @@ export default function Form(props) {
     return (
         <>
         <div className='flex flex-col justify-center rounded-2xl p-6 shadow-[0_0_15px_rgba(0,0,0,0.8)] max-w-lg mx-auto bg-[#1f1f38] mb-30'>
+
             <div className='w-auto'>
                 <h1 className='text-center text-[1.3rem] font-semibold pb-1'>Eco Travel Planner 🌱</h1>
                 <p className='text-center font-light opacity-80'>Calculate the Carbon Emissions for your trip.</p>
@@ -76,7 +77,6 @@ export default function Form(props) {
                         <option>Gas-Powered Car</option>
                         <option>Electric-Powered Car</option>
                         <option>Hybrid Car</option>
-                        <option>Train</option>
                         <option>Air</option>
                     </select>
 
@@ -88,7 +88,10 @@ export default function Form(props) {
                     className='outline-none w-full'
                     value={props.distance}
                     onChange={ (e) => props.setDistance(e.target.value)}></input>
-                    <span>km</span>
+                    <select>
+                        <options>miles</options>
+                        <options>km</options>
+                    </select>
                     </div>
                     
                     <h3 className='mt-10 text-center text-red-500 font-semibold'>{props.error}</h3>
@@ -98,14 +101,10 @@ export default function Form(props) {
                     Submit</button>
                 </form>
             </div>
+
         </div>
 
 
-        <div className='bg-blue-300'>
-            <h1>How You Can Reduce Your Carbon Footprint</h1>
-            <p>Based on your input: You are traveling by {props.travelMode} and you are 
-                traveling {props.distance} mles. your originlat is {props.originLat} your originlong is {props.originLong} </p>
-        </div>
         </>
     )
 }

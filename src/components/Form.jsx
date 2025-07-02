@@ -52,7 +52,10 @@ export default function Form(props) {
         });
 
         const data = await response.json();
-        console.log(data);
+        const data_grams = data.attributes.carbon_g;
+        const data_lb = data.attributes.carbon_lb;
+        const data_kg = data.attributes.carbon_kg;
+        const data_mt = data.attributes.carbon_mt;
       }
 
 
@@ -87,42 +90,7 @@ export default function Form(props) {
                     onChange={ (e) => props.setDistance(e.target.value)}></input>
                     <span>km</span>
                     </div>
-
-                    <div className='flex flex-row text-center mb-5'>
-                        <div>
-                            <label>Origin Latitude</label>
-                            <input className='mt-2 outline-none px-2 py-1.5 border border-gray-400 rounded-md'
-                            value={props.originLat}
-                            placeholder='ex: 41.40338'
-                            name='originLat'
-                            onChange={(e) => props.setOriginLat(e.target.value)}></input>
-                        </div>
-                        <div>
-                            <label>Origin Longitude</label>
-                            <input className='mt-2 outline-none px-2 py-1.5 border border-gray-400 rounded-md'
-                            value={props.originLong}
-                            placeholder='ex: 11.50327'
-                            onChange={(e) => props.setOriginLong(e.target.value)}></input>
-                        </div>
-                    </div>
-
-                    <div className='flex flex-row text-center mt-2'>
-                        <div>
-                            <label>Destination Latitude</label>
-                            <input className='mt-2 outline-none px-2 py-1.5 border border-gray-400 rounded-md'
-                            value={props.destinationLat}
-                            placeholder='ex: 21.41228'
-                            onChange={(e) => props.setDestinationLat(e.target.value)}></input>
-                        </div>
-                        <div>
-                            <label>Destination Longitude</label>
-                            <input className='mt-2 outline-none px-2 py-1.5 border border-gray-400 rounded-md'
-                            value={props.destinationLong}
-                            placeholder='ex: 51.52238'
-                            onChange={(e) => props.setDestinationLong(e.target.value)}></input>
-                        </div>
-                    </div>
-
+                    
                     <h3 className='mt-10 text-center text-red-500 font-semibold'>{props.error}</h3>
 
                     <button type='submit'

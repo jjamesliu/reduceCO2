@@ -22,7 +22,9 @@ function App() {
       units={units}
       setUnits={setUnits}
       />
-      <Results />
+      <Results travelMode={travelMode}
+      distance={distance}
+      units={units}/>
     </>
   )
 }

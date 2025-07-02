@@ -45,7 +45,7 @@ export default function Form(props) {
         },
         body: JSON.stringify({
             type: apiTravelMode,
-            distance_unit: "km",
+            distance_unit: props.units,
             distance_value: props.distance,
             vehicle_model_id: "7268a9b7-17e8-4c8d-acca-57059252afe9"
         })
@@ -70,7 +70,7 @@ export default function Form(props) {
                 <form className='mt-4'
                 onSubmit={handleSubmit}>
                     <label>Travel Type</label>
-                    <select className='flex flex-col border border-gray-400 my-2 rounded-lg p-1.5 w-full'
+                    <select className='flex flex-col border border-gray-400 my-2 rounded-lg p-1.5 w-full outline-none'
                     name='travelType' 
                     value={props.travelMode}
                     onChange={ (e) => props.setTravelMode(e.target.value)}>

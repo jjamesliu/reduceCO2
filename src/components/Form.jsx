@@ -1,17 +1,16 @@
 export default function Form(props) {
 
-    const api = import.meta.env.VITE_CLIMATIQ_API;
+    const api = import.meta.env.VITE_CARBON_API;
 
     const travelModeMap = {
-        'Gas-Powered Car': 'car',
-        'Electric-Powered Car': 'car',
-        'Hybrid Car': 'car',
-        'Train': 'rail',
-        'Air': 'air'
+        'Gas-Powered Car': 'vehicle',
+        'Electric-Powered Car': 'vehicle',
+        'Hybrid Car': 'vehicle',
+        'Air': 'flight'
     }
     const apiTravelMode = travelModeMap[props.travelMode]
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
         console.log('button clicked')
 
@@ -31,12 +30,31 @@ export default function Form(props) {
             props.setError('Input valid numbers.');
             return;
         }
+
         props.setError(null);
         console.log('apiTravelMode: ', apiTravelMode);
         console.log('km traveled:', props.distance)
         console.log('origin lat and long:', props.originLat, '/' , props.originLong )
         console.log('destination lat and long:', props.destinationLat, '/' , props.destinationLong )
-    }
+
+        const response = await fetch("https://www.carboninterface.com/api/v1/estimates", {
+        method: "POST",
+        headers: {
+            "Authorization": `Bearer ${api}`,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            type: apiTravelMode,
+            distance_unit: "km",
+            distance_value: props.distance,
+            vehicle_model_id: "7268a9b7-17e8-4c8d-acca-57059252afe9"
+        })
+        });
+
+        const data = await response.json();
+        console.log(data);
+      }
+
 
     return (
         <>
@@ -118,7 +136,7 @@ export default function Form(props) {
         <div className='bg-blue-300'>
             <h1>How You Can Reduce Your Carbon Footprint</h1>
             <p>Based on your input: You are traveling by {props.travelMode} and you are 
-                traveling {props.distance} mles.</p>
+                traveling {props.distance} mles. your originlat is {props.originLat} your originlong is {props.originLong} </p>
         </div>
         </>
     )

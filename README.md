@@ -1,10 +1,9 @@
-# Reduce Carbon (CO2)
-Check your carbon footprint.
+# Reduce Your Carbon Footprint
 
-## Tech Stack
-Build Tool: Vite<br/>
-Library: React<br/>
-Styling: TailwindCSS<br/>
-Deployment: Netlify<br/>
 
-APIS: AutoClimatiq
+## Tech Stack 
+- Build Tool: Vite
+- Library:  React
+- Styling: TailwindCSS
+
+APIS: CarbonInterface

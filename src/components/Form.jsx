@@ -33,6 +33,9 @@ export default function Form(props) {
         }
         props.setError(null);
         console.log('apiTravelMode: ', apiTravelMode);
+        console.log('km traveled:', props.distance)
+        console.log('origin lat and long:', props.originLat, '/' , props.originLong )
+        console.log('destination lat and long:', props.destinationLat, '/' , props.destinationLong )
     }
 
     return (

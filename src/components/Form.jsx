@@ -88,10 +88,14 @@ export default function Form(props) {
                     className='outline-none w-full'
                     value={props.distance}
                     onChange={ (e) => props.setDistance(e.target.value)}></input>
-                    <select>
-                        <options>miles</options>
-                        <options>km</options>
+
+                    <select className='ml-2 text-white border border-gray-400 px-[2.5px] rounded-md outline-none'
+                    value={props.units}
+                    onChange={(e)=>props.setUnits(e.target.value)}> 
+                        <option>miles</option>
+                        <option>km</option>
                     </select>
+
                     </div>
                     
                     <h3 className='mt-10 text-center text-red-500 font-semibold'>{props.error}</h3>

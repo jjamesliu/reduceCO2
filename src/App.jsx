@@ -7,6 +7,7 @@ function App() {
   const [travelMode, setTravelMode] = useState("Gas-Powered Car")
   const [distance, setDistance] = useState("")
   const [error, setError] = useState(null)
+  const [units, setUnits] = useState("miles")
   
 
   return (
@@ -18,6 +19,8 @@ function App() {
       setDistance={setDistance}
       error={error}
       setError={setError}
+      units={units}
+      setUnits={setUnits}
       />
       <Results />
     </>

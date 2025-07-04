@@ -106,7 +106,6 @@ export default function Form(props) {
                         placeholder='1'
                         name='distance'
                         className='outline-none w-full'
-                        value={props.distance}
                         onChange={ (e) => props.setDistance(e.target.value)}></input>
 
                         <select className='ml-2 text-white border border-gray-400 px-[2.5px] rounded-md outline-none'
@@ -119,7 +118,12 @@ export default function Form(props) {
                     </> ) : null
                     }
 
-                    {props.travelMode === 'flight' ? <AirForm /> : null}
+                    {props.travelMode === 'flight' ? 
+                    <AirForm departAirport={props.departAirport}
+                    arrivalAirport={props.arrivalAirport}
+                    setDepartAirport={props.setDepartAirport}
+                    setArrivalAirport={props.setArrivalAirport}
+                    /> : null}
 
                     <h3 className='mt-10 text-center text-red-500 font-semibold'>{props.error}</h3>
 

@@ -14,17 +14,8 @@ export default function Form(props) {
         e.preventDefault();
         console.log('button clicked')
 
-        const isEmpty = props.distance.trim() === '' ||
-        props.originLat.trim() === '' ||
-        props.originLong.trim() === '' ||
-        props.destinationLat.trim() === '' ||
-        props.destinationLong.trim() === '';
-
-        const isNotNumber = isNaN(props.distance) ||
-        isNaN(props.originLat) ||
-        isNaN(props.originLong) ||
-        isNaN(props.destinationLat) ||
-        isNaN(props.destinationLong);
+        const isEmpty = props.distance.trim() === '';
+        const isNotNumber = isNaN(props.distance);
 
         if (isEmpty || isNotNumber) {
             props.setError('Input valid numbers.');
@@ -32,30 +23,49 @@ export default function Form(props) {
         }
 
         props.setError(null);
-        console.log('apiTravelMode: ', apiTravelMode);
-        console.log('km traveled:', props.distance)
-        console.log('origin lat and long:', props.originLat, '/' , props.originLong )
-        console.log('destination lat and long:', props.destinationLat, '/' , props.destinationLong )
+        let response;
 
-        const response = await fetch("https://www.carboninterface.com/api/v1/estimates", {
-        method: "POST",
-        headers: {
-            "Authorization": `Bearer ${api}`,
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            type: apiTravelMode,
-            distance_unit: props.units,
-            distance_value: props.distance,
-            vehicle_model_id: "7268a9b7-17e8-4c8d-acca-57059252afe9"
-        })
-        });
-
+        if (apiTravelMode === 'vehicle') {
+            response = await fetch("https://www.carboninterface.com/api/v1/estimates", {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${api}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                type: apiTravelMode,
+                distance_unit: props.units,
+                distance_value: props.distance,
+                vehicle_model_id: "7268a9b7-17e8-4c8d-acca-57059252afe9"
+            })
+            });
+        } else if (apiTravelMode === 'flight') {
+            response = await fetch("https://www.carboninterface.com/api/v1/estimates", {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${api}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                type: apiTravelMode,
+                passengers: 100,
+                legs: [{
+                    departure_airport: 'SJC',
+                    destination_airport: 'ONT'
+                }],
+                distance_unit: props.units
+            })
+            });
+        }
+      
         const data = await response.json();
-        const data_grams = data.attributes.carbon_g;
-        const data_lb = data.attributes.carbon_lb;
-        const data_kg = data.attributes.carbon_kg;
-        const data_mt = data.attributes.carbon_mt;
+        console.log(data);
+        console.log(data.data.attributes.distance_value);
+        props.setDistance(data.data.attributes.distance_value);
+        const data_grams = data.data.attributes.carbon_g;
+        const data_lb = data.data.attributes.carbon_lb;
+        const data_kg = data.data.attributes.carbon_kg;
+        const data_mt = data.data.attributes.carbon_mt;
       }
 
 
@@ -92,7 +102,7 @@ export default function Form(props) {
                     <select className='ml-2 text-white border border-gray-400 px-[2.5px] rounded-md outline-none'
                     value={props.units}
                     onChange={(e)=>props.setUnits(e.target.value)}> 
-                        <option>miles</option>
+                        <option value='mi'>miles</option>
                         <option>km</option>
                     </select>
 

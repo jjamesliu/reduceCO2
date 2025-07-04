@@ -8,7 +8,7 @@ export default function Form(props) {
         'Gas-Powered Car': 'vehicle',
         'Electric-Powered Car': 'vehicle',
         'Hybrid Car': 'vehicle',
-        'Air': 'flight'
+        'flight': 'flight'
     }
     const apiTravelMode = travelModeMap[props.travelMode]
 
@@ -16,10 +16,13 @@ export default function Form(props) {
         e.preventDefault();
         console.log('button clicked')
 
+
         const isEmpty = props.distance.trim() === '';
         const isNotNumber = isNaN(props.distance);
+        const checker = isEmpty || isNotNumber;
 
-        if (isEmpty || isNotNumber) {
+
+        if (checker && apiTravelMode === 'vehicle') {
             props.setError('Input valid numbers.');
             return;
         }

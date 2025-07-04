@@ -8,6 +8,8 @@ function App() {
   const [distance, setDistance] = useState("")
   const [error, setError] = useState(null)
   const [units, setUnits] = useState("mi")
+  const [departAirport, setdepartAirport] = useState("")
+  const [arrivalAirport, setArrivalAirport] = useState("")
   
 
   return (
@@ -21,6 +23,10 @@ function App() {
       setError={setError}
       units={units}
       setUnits={setUnits}
+      departAirport={departAirport}
+      setdepartAirport={setdepartAirport}
+      arrivalAirport={arrivalAirport}
+      setArrivalAirport={setArrivalAirport}
       />
       <Results travelMode={travelMode}
       distance={distance}

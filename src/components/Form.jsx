@@ -16,14 +16,22 @@ export default function Form(props) {
         e.preventDefault();
         console.log('button clicked')
 
-
         const isEmpty = props.distance.trim() === '';
         const isNotNumber = isNaN(props.distance);
         const checker = isEmpty || isNotNumber;
 
 
+        const arrivalAirportisEmpty = props.arrivalAirport.trim() === '';
+        const departAirportisEmpty = props.departAirport.trim() === '';
+        const airportChecker = arrivalAirportisEmpty || departAirportisEmpty;
+
         if (checker && apiTravelMode === 'vehicle') {
             props.setError('Input valid numbers.');
+            return;
+        }
+
+        if (airportChecker && apiTravelMode === 'flight') {
+            props.setError('Input a valid 3 letter airport code.')
             return;
         }
 
@@ -55,8 +63,8 @@ export default function Form(props) {
                 type: apiTravelMode,
                 passengers: 100,
                 legs: [{
-                    departure_airport: 'SJC',
-                    destination_airport: 'ONT'
+                    departure_airport: props.departAirport,
+                    destination_airport: props.arrivalAirport
                 }],
                 distance_unit: props.units
             })

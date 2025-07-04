@@ -1,7 +1,15 @@
+import {useEffect} from 'react'
 import AirForm from './AirForm.jsx'
 import airportData from '../airports.json'
 
 export default function Form(props) {
+    useEffect(()=>{
+        props.setError(null);
+        props.setDistance("")
+        props.setUnits("mi")
+        props.setDepartAirport("")
+        props.setArrivalAirport("")
+    }, [props.travelMode])
 
     const api = import.meta.env.VITE_CARBON_API;
 

@@ -86,15 +86,18 @@ export default function Form(props) {
                     name='travelType' 
                     value={props.travelMode}
                     onChange={ (e) => props.setTravelMode(e.target.value)}>
-                        <option value='vehicle'>Gas-Powered Car</option>
-                        <option value='vehicle'>Electric-Powered Car</option>
-                        <option value='vehicle'>Hybrid Car</option>
+                        <option>Gas-Powered Car</option>
+                        <option>Electric-Powered Car</option>
+                        <option>Hybrid Car</option>
                         <option value='flight'>Air</option>
                     </select>
 
-                    {props.travelMode === 'vehicle' ? (
+                    {props.travelMode === 'Gas-Powered Car' ||
+                    props.travelMode === 'Electric-Powered Car' ||
+                    props.travelMode === 'Hybrid Car'           
+                    ? (
                     <>
-                    <label className='block mb-2'>Distance</label>
+                    <label className='block mb-2 mt-4'>Distance</label>
                     <div className='flex items-center border border-gray-400 rounded-lg px-2 py-1.5 mb-5'>
                         <input type='text'
                         placeholder='1'

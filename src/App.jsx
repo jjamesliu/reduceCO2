@@ -4,7 +4,7 @@ import Form from './components/Form.jsx'
 import Results from './components/Results.jsx'
 
 function App() {
-  const [travelMode, setTravelMode] = useState("vehicle")
+  const [travelMode, setTravelMode] = useState("Gas-Powered Car")
   const [distance, setDistance] = useState("")
   const [error, setError] = useState(null)
   const [units, setUnits] = useState("mi")

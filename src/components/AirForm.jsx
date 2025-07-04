@@ -1,7 +1,7 @@
 export default function AirForm(props) {
     return (
         <>  
-            <div className='flex flex-row gap-10'>
+            <div className='flex flex-row gap-10 mt-5'>
 
                 <div className='mb-5 text-center flex-1'>
                     <label className='block'>AIRPORT CODE Depart</label>

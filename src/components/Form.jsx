@@ -1,4 +1,5 @@
 import AirForm from './AirForm.jsx'
+import airportData from '../airports.json'
 
 export default function Form(props) {
 
@@ -11,6 +12,13 @@ export default function Form(props) {
         'flight': 'flight'
     }
     const apiTravelMode = travelModeMap[props.travelMode]
+
+    function isValidAirportCode(code) {
+        const upper = code.toUpperCase();
+        const isFormatCorrect = /^[A-Z]{3}$/.test(upper);
+        const existsInData = Object.values(airportData).some(entry => entry.iata === upper);
+        return isFormatCorrect && existsInData;
+    }
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -33,6 +41,11 @@ export default function Form(props) {
         if (airportChecker && apiTravelMode === 'flight') {
             props.setError('Input a valid 3 letter airport code.')
             return;
+        } else if (apiTravelMode === 'flight'){
+            if (!isValidAirportCode(props.departAirport) || !isValidAirportCode(props.arrivalAirport)) {
+                props.setError("Please enter valid 3-letter IATA airport codes.")
+                return;
+            }
         }
 
         props.setError(null);
@@ -71,10 +84,10 @@ export default function Form(props) {
             });
         }
       
+
         const data = await response.json();
         console.log(data);
         console.log(data.data.attributes.distance_value);
-        props.setDistance(data.data.attributes.distance_value);
         const data_grams = data.data.attributes.carbon_g;
         const data_lb = data.data.attributes.carbon_lb;
         const data_kg = data.data.attributes.carbon_kg;

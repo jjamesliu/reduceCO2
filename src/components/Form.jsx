@@ -1,3 +1,5 @@
+import AirForm from './AirForm.jsx'
+
 export default function Form(props) {
 
     const api = import.meta.env.VITE_CARBON_API;
@@ -84,30 +86,35 @@ export default function Form(props) {
                     name='travelType' 
                     value={props.travelMode}
                     onChange={ (e) => props.setTravelMode(e.target.value)}>
-                        <option>Gas-Powered Car</option>
-                        <option>Electric-Powered Car</option>
-                        <option>Hybrid Car</option>
-                        <option>Air</option>
+                        <option value='vehicle'>Gas-Powered Car</option>
+                        <option value='vehicle'>Electric-Powered Car</option>
+                        <option value='vehicle'>Hybrid Car</option>
+                        <option value='flight'>Air</option>
                     </select>
 
+                    {props.travelMode === 'vehicle' ? (
+                    <>
                     <label className='block mb-2'>Distance</label>
                     <div className='flex items-center border border-gray-400 rounded-lg px-2 py-1.5 mb-5'>
-                    <input type='text'
-                    placeholder='1'
-                    name='distance'
-                    className='outline-none w-full'
-                    value={props.distance}
-                    onChange={ (e) => props.setDistance(e.target.value)}></input>
+                        <input type='text'
+                        placeholder='1'
+                        name='distance'
+                        className='outline-none w-full'
+                        value={props.distance}
+                        onChange={ (e) => props.setDistance(e.target.value)}></input>
 
-                    <select className='ml-2 text-white border border-gray-400 px-[2.5px] rounded-md outline-none'
-                    value={props.units}
-                    onChange={(e)=>props.setUnits(e.target.value)}> 
-                        <option value='mi'>miles</option>
-                        <option>km</option>
-                    </select>
-
+                        <select className='ml-2 text-white border border-gray-400 px-[2.5px] rounded-md outline-none'
+                        value={props.units}
+                        onChange={(e)=>props.setUnits(e.target.value)}> 
+                            <option value='mi'>miles</option>
+                            <option>km</option>
+                        </select>
                     </div>
-                    
+                    </> ) : null
+                    }
+
+                    {props.travelMode === 'flight' ? <AirForm /> : null}
+
                     <h3 className='mt-10 text-center text-red-500 font-semibold'>{props.error}</h3>
 
                     <button type='submit'

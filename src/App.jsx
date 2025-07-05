@@ -10,8 +10,10 @@ function App() {
   const [units, setUnits] = useState("mi")
   const [departAirport, setDepartAirport] = useState("")
   const [arrivalAirport, setArrivalAirport] = useState("")
-  
 
+  const [carbonResult, setCarbonResult] = useState("")
+  const [flightDistance, setFlightDistance] = useState("");
+  
   return (
     <>
       <Header />
@@ -27,10 +29,15 @@ function App() {
       setDepartAirport={setDepartAirport}
       arrivalAirport={arrivalAirport}
       setArrivalAirport={setArrivalAirport}
+      flightDistance={flightDistance}
+      setFlightDistance={setFlightDistance}
+      carbonResult={carbonResult}
+      setCarbonResult={setCarbonResult}
       />
       <Results travelMode={travelMode}
-      distance={distance}
-      units={units}/>
+      flightDistance={flightDistance}
+      units={units}
+      carbonResult={carbonResult}/>
     </>
   )
 }

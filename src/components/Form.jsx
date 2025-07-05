@@ -96,10 +96,10 @@ export default function Form(props) {
         const data = await response.json();
         console.log(data);
         console.log(data.data.attributes.distance_value);
+        const flight_distance = data.data.attributes.distance_value;
+        props.setFlightDistance(flight_distance);
         const data_grams = data.data.attributes.carbon_g;
-        const data_lb = data.data.attributes.carbon_lb;
-        const data_kg = data.data.attributes.carbon_kg;
-        const data_mt = data.data.attributes.carbon_mt;
+        props.setCarbonResult(data_grams)
       }
 
 

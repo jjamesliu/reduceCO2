@@ -1,8 +1,7 @@
 import {useState} from 'react'
 
 export default function AirForm(props) {
-    console.log(props.departAirport);
-    console.log(props.arrivalAirport);
+
     return (
         <>  
             <div className='flex flex-row gap-10 mt-5'>

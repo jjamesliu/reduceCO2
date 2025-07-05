@@ -9,6 +9,7 @@ export default function Form(props) {
         props.setUnits("mi")
         props.setDepartAirport("")
         props.setArrivalAirport("")
+        props.setResultShown(false)
     }, [props.travelMode])
 
     const api = import.meta.env.VITE_CARBON_API;
@@ -100,6 +101,8 @@ export default function Form(props) {
         props.setFlightDistance(flight_distance);
         const data_grams = data.data.attributes.carbon_g;
         props.setCarbonResult(data_grams)
+
+        props.setResultShown(true);
       }
 
 
@@ -135,6 +138,7 @@ export default function Form(props) {
                         placeholder='1'
                         name='distance'
                         className='outline-none w-full'
+                        value={props.distance}
                         onChange={ (e) => props.setDistance(e.target.value)}></input>
 
                         <select className='ml-2 text-white border border-gray-400 px-[2.5px] rounded-md outline-none'

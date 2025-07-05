@@ -13,6 +13,8 @@ function App() {
 
   const [carbonResult, setCarbonResult] = useState("")
   const [flightDistance, setFlightDistance] = useState("");
+
+  const [resultShown, setResultShown] = useState(false);
   
   return (
     <>
@@ -33,8 +35,10 @@ function App() {
       setFlightDistance={setFlightDistance}
       carbonResult={carbonResult}
       setCarbonResult={setCarbonResult}
+      setResultShown={setResultShown}
       />
-      <Results travelMode={travelMode}
+      <Results resultShown={resultShown}
+      travelMode={travelMode}
       flightDistance={flightDistance}
       units={units}
       carbonResult={carbonResult}/>

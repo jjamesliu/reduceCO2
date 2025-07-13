@@ -11,7 +11,7 @@ try {
             {
                 role: "user",
                 content: `My current mode of transportation is ${travelMode}.
-                 How can I reduce my carbon footprint?`,
+                 How can I reduce my carbon footprint? Format your response in markdown to make it easier to render to a web page`,
             },
         ],
     });

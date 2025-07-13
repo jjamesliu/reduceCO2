@@ -1,4 +1,5 @@
 import {useState} from 'react'
+import ReactMarkdown from 'react-markdown'
 
 export default function Result(props) {
     if (!props.resultShown) return null;
@@ -18,8 +19,12 @@ export default function Result(props) {
 
             {props.advice && (
             <div>
-                <h1 className="font-semibold mb-2 underline">What you should do to reduce your carbon:</h1>
-                <p className="whitespace-pre-wrap text-sm leading-relaxed">{props.advice}</p>
+                <h1 className="font-semibold text-2xl mb-[2rem] mt-[2rem] underline text-center">What you should do to reduce your carbon:</h1>
+                <div className="whitespace-pre-wrap text-sm leading-relaxed">
+                    <ReactMarkdown>
+                    {props.advice}
+                    </ReactMarkdown>
+                </div>
             </div>
             )}
         </div>

@@ -3,6 +3,8 @@ import Header from './components/Header.jsx'
 import Form from './components/Form.jsx'
 import Results from './components/Results.jsx'
 
+import { getCarbonAdvice } from '../carbonAdvice.js'
+
 function App() {
   const [travelMode, setTravelMode] = useState("Gas-Powered Car")
   const [distance, setDistance] = useState("")
@@ -16,6 +18,17 @@ function App() {
 
   const [resultShown, setResultShown] = useState(false);
   
+  const [advice, setAdvice] = useState("");
+
+  async function handleCarbonAdvice() {
+        try {
+            const response = await getCarbonAdvice(travelMode);
+            setAdvice(response);
+        } catch {
+            console.log("Error. Please try again later");
+        }
+    }
+
   return (
     <>
       <Header />
@@ -36,12 +49,16 @@ function App() {
       carbonResult={carbonResult}
       setCarbonResult={setCarbonResult}
       setResultShown={setResultShown}
+      handleCarbonAdvice={handleCarbonAdvice}
+      advice={advice}
+      setAdvice={setAdvice}
       />
       <Results resultShown={resultShown}
       travelMode={travelMode}
       flightDistance={flightDistance}
       units={units}
-      carbonResult={carbonResult}/>
+      carbonResult={carbonResult}
+      advice={advice}/>
     </>
   )
 }

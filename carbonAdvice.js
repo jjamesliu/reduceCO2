@@ -1,10 +1,9 @@
 import { InferenceClient } from "@huggingface/inference";
 
-const client = new InferenceClient(process.env.VITE_HF_TOKEN);
+const client = new InferenceClient(import.meta.env.VITE_HF_TOKEN);
 
-
-exports.handler = async function(event, context) {
-
+export async function getCarbonAdvice(travelMode) {
+try {
     const chatCompletion = await client.chatCompletion({
         provider: "novita",
         model: "meta-llama/Meta-Llama-3-8B-Instruct",
@@ -16,6 +15,12 @@ exports.handler = async function(event, context) {
             },
         ],
     });
+    return chatCompletion.choices[0].message.content;
 
+    } catch (error) {
+         console.log('Error getting carbon advice: ', error);
+         return error;
+    }
 }
-console.log(chatCompletion.choices[0].message);
+
+

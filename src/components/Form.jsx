@@ -103,6 +103,9 @@ export default function Form(props) {
         props.setCarbonResult(data_grams)
 
         props.setResultShown(true);
+
+        props.handleCarbonAdvice(); //calls AI api
+
       }
 
 

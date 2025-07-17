@@ -4,7 +4,7 @@ import Form from './components/Form.jsx'
 import Results from './components/Results.jsx'
 import LoadingScreen from './components/LoadingScreen.jsx'
 
-import { getCarbonAdvice } from '../carbonAdvice.js'
+import { getCarbonAdvice } from './api/carbonAdvice.js'
 
 function App() {
   const [travelMode, setTravelMode] = useState("Gas-Powered Car")

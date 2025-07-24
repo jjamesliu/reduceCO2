@@ -6,4 +6,6 @@
 - Library:  React
 - Styling: TailwindCSS
 
-APIS: CarbonInterface
+API: CarbonInterface, Hugging Face Inference API
+
+[Deployed on Netlify](https://reduceco2.netlify.app/)

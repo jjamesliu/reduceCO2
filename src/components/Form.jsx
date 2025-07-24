@@ -32,6 +32,7 @@ export default function Form(props) {
     async function handleSubmit(e) {
         e.preventDefault();
         console.log('button clicked')
+        props.setIsLoading(true);
 
         const isEmpty = props.distance.trim() === '';
         const isNotNumber = isNaN(props.distance);
@@ -103,6 +104,10 @@ export default function Form(props) {
         props.setCarbonResult(data_grams)
 
         props.setResultShown(true);
+
+        props.handleCarbonAdvice(); //calls AI api
+
+
       }
 
 

@@ -1,7 +1,11 @@
+import {useState} from 'react'
+import ReactMarkdown from 'react-markdown'
+
 export default function Result(props) {
     if (!props.resultShown) return null;
-    
+
     return(
+        <section id="results" ref={props.resultsRef}>
         <div className='flex flex-col items-center bg-[#303a61] text-white rounded-xl max-w-3xl p-7 m-auto shadow-[0_0_10px_rgba(0,0,0,0.8)]'>
             <h1 className='underline text-2xl mb-2 font-semibold'>Results</h1>
             <p className='mb-2'>Based on your input: You are traveling by {props.travelMode}.</p>
@@ -13,6 +17,18 @@ export default function Result(props) {
             </>
             ) : (
             <p>Your estimated Carbon Footprint is: {props.carbonResult} grams.</p> )}
+
+            {props.advice && (
+            <div ref={props.adviceRef}>
+                <h1 className="font-semibold text-2xl mb-[2rem] mt-[2rem] underline text-center">What you should do to reduce your carbon:</h1>
+                <div className="whitespace-pre-wrap text-sm leading-relaxed">
+                    <ReactMarkdown>
+                    {props.advice}
+                    </ReactMarkdown>
+                </div>
+            </div>
+            )}
         </div>
+        </section>
     )
 }

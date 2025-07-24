@@ -53,28 +53,31 @@ function App() {
   return (
     <>
       <Header />
-      <Form travelMode={travelMode}
-      setTravelMode={setTravelMode}
-      distance={distance}
-      setDistance={setDistance}
-      error={error}
-      setError={setError}
-      units={units}
-      setUnits={setUnits}
-      departAirport={departAirport}
-      setDepartAirport={setDepartAirport}
-      arrivalAirport={arrivalAirport}
-      setArrivalAirport={setArrivalAirport}
-      flightDistance={flightDistance}
-      setFlightDistance={setFlightDistance}
-      carbonResult={carbonResult}
-      setCarbonResult={setCarbonResult}
-      setResultShown={setResultShown}
-      handleCarbonAdvice={handleCarbonAdvice}
-      advice={advice}
-      setAdvice={setAdvice}
-      setIsLoading={setIsLoading}
-      />
+
+      <div className='px-8'>
+        <Form travelMode={travelMode}
+        setTravelMode={setTravelMode}
+        distance={distance}
+        setDistance={setDistance}
+        error={error}
+        setError={setError}
+        units={units}
+        setUnits={setUnits}
+        departAirport={departAirport}
+        setDepartAirport={setDepartAirport}
+        arrivalAirport={arrivalAirport}
+        setArrivalAirport={setArrivalAirport}
+        flightDistance={flightDistance}
+        setFlightDistance={setFlightDistance}
+        carbonResult={carbonResult}
+        setCarbonResult={setCarbonResult}
+        setResultShown={setResultShown}
+        handleCarbonAdvice={handleCarbonAdvice}
+        advice={advice}
+        setAdvice={setAdvice}
+        setIsLoading={setIsLoading}
+        />
+      </div>
 
       {isLoading && <LoadingScreen />}
 

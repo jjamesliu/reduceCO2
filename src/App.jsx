@@ -81,14 +81,16 @@ function App() {
 
       {isLoading && <LoadingScreen />}
 
-      <Results resultShown={resultShown}
-      travelMode={travelMode}
-      flightDistance={flightDistance}
-      units={units}
-      carbonResult={carbonResult}
-      advice={advice}
-      resultsRef={resultsRef}
-      adviceRef={adviceRef}/>
+      <div className='px-8'>
+        <Results resultShown={resultShown}
+        travelMode={travelMode}
+        flightDistance={flightDistance}
+        units={units}
+        carbonResult={carbonResult}
+        advice={advice}
+        resultsRef={resultsRef}
+        adviceRef={adviceRef}/>
+      </div>
       
     </>
   )

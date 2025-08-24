@@ -1,8 +1,19 @@
-import {useEffect} from 'react'
-import AirForm from './AirForm.jsx'
-import airportData from '../airports.json'
+import {useState, useEffect} from 'react';
+import AirForm from './AirForm.jsx';
+import airportData from '../airports.json';
+import Models from '../data/all_models.json';
 
 export default function Form(props) {
+    
+    console.log(Models);
+    const allCarModels = Models.map(model => ({
+        name: model.data.attributes.name,
+        id: model.data.id
+    }));
+    console.log("This is the final allCarModels ", allCarModels);
+
+
+
     useEffect(()=>{
         props.setError(null);
         props.setDistance("")
@@ -10,6 +21,7 @@ export default function Form(props) {
         props.setDepartAirport("")
         props.setArrivalAirport("")
         props.setResultShown(false)
+
     }, [props.travelMode])
 
     const api = import.meta.env.VITE_CARBON_API;
@@ -151,6 +163,23 @@ export default function Form(props) {
                             <option>km</option>
                         </select>
                     </div>
+
+                    <div className='space-y-4'>
+                        <div className='space-y-2'>
+                            <label className='block'>Car Model</label>
+                            <select type='text' className='border border-gray-400 rounded-lg w-full py-1.5 pl-2 '>
+                            {allCarModels.map((model) => (
+                                <option key={model.id} className='bg-[#1f1f38] '>{model.name}</option>
+                            ))}
+                            </select>
+
+                        </div>
+                        <div className='space-y-2'>
+                            <label className='block'>Exact Model ID</label>
+                            <select type='text' className='border border-gray-400 rounded-lg w-full py-1.5'/>
+                        </div>
+                    </div>
+
                     </> ) : null
                     }
 
